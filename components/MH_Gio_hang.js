@@ -14,14 +14,25 @@ class FlatListItem extends Component {
             So_luong: 1,
         }
     }
-    Xoa_San_pham() {
-        // Thông báo xóa sản phẩm
+    ﻿Xoa_San_pham() {
+        Alert.alert('Bạn xóa Tivi: ' + this.state.Ma_so);
+        let Vi_tri= Du_lieu.Gio_hang.findIndex((item)=>{return item.Ma_so==this.state.Ma_so});
+        Du_lieu.Gio_hang.splice(Vi_tri,1);
+        this.props.handleForDelete(Du_lieu.Gio_hang);
     }
+
     Them_So_luong() {
-        // Tăng số lượng 1 nếu số lượng =10 thì không cho tăng
+        if (Number(this.state.So_luong) < 10) {
+            this.setState({ So_luong: Number(this.state.So_luong) + 1 });
+        }
     }
     Giam_So_luong() {
-        // Giảm số lượng 1 nếu số lượng =0 thì không cho giảm
+        if (Number(this.state.So_luong) > 1) {
+            this.setState({ So_luong: Number(this.state.So_luong) - 1 });
+        }
+    }
+    handleForDelete(Gio_hang) {
+        this.setState({Danh_sach_Tivi: Gio_hang})
     }
     componentDidMount() {
         this.setState({
@@ -89,7 +100,7 @@ export default class Gio_hang extends Component {
                     keyExtractor={(item) => item.Ma_so}
                     renderItem={({ item, index }) => {
                         return (
-                            <FlatListItem item={item} index={index}></FlatListItem>
+                            <FlatListItem item={item} index={index} handleForDelete = {this.handleForDelete.bind(this)}></FlatListItem>
                         );
                     }}>
                 </FlatList>
