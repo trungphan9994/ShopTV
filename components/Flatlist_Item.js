@@ -7,7 +7,7 @@ class Flatlist_Item extends Component{
     render(){
         return(
             <View style={{flex:1, flexDirection:"row", backgroundColor:"#e5f6ff"}}>
-                <TouchableOpacity style={{flex:1, flexDirection:"row", backgroundColor:"#e5f6ff"}}  activeOpacity={0.5}>
+                <TouchableOpacity style={{flex:8, flexDirection:"row", backgroundColor:"#e5f6ff"}}  activeOpacity={0.5}>
                     <Image style={{height:80,width:120, margin:5}} source={{ uri: this.props.item.Hinh }}></Image>
                     <View style={{flex:1, flexDirection:"column", height:30}}>
                     
@@ -16,6 +16,11 @@ class Flatlist_Item extends Component{
                         <Text style={style.itemText}>Đơn giá: {format_number(this.props.item.Don_gia.toString()) + ' VNĐ'}</Text>
                     </View>   
                 </TouchableOpacity>
+                <View style={{flex:2}}>
+                    <TouchableOpacity>
+                        <Text style={{fontSize:25,backgroundColor:"blue",color:"white"}}>Đặt hàng</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
